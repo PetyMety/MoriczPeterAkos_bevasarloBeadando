@@ -43,7 +43,7 @@ public class ListActivity extends AppCompatActivity {
     }
     public void init(){
         termekekListView = findViewById(R.id.termekekListView);
-        visszaButton = findViewById(R.id.visszaButton);
+        visszaButton = findViewById(R.id.back2Button);
         termekekList =  new ArrayList<>();
         termekekAdapter = new TermekekAdapter(termekekList, this);;
         termekekListView.setAdapter(termekekAdapter);

@@ -44,10 +44,10 @@ public class TermekActivity extends AppCompatActivity {
 
     }
     public void init(){
-        editTextNameEdit= findViewById(R.id.edittextNameModosit);
-        editTextPriceEdit= findViewById(R.id.edittextOnePriceModosit);
-        editTextCountEdit= findViewById(R.id.edittextCountModosit);
-        editTextMeasureEdit= findViewById(R.id.edittextMertekModosit);
+        editTextNameEdit = findViewById(R.id.edittextNameEdit);
+        editTextPriceEdit = findViewById(R.id.edittextPriceEdit);
+        editTextCountEdit = findViewById(R.id.edittextCountEdit);
+        editTextMeasureEdit = findViewById(R.id.edittextMeasureEdit);
         editbutton = findViewById(R.id.editButton);
         deletebutton = findViewById(R.id.deleteButton);
         backbutton = findViewById(R.id.backButton);
@@ -110,10 +110,10 @@ public class TermekActivity extends AppCompatActivity {
             public void onResponse(Call<Termekek> call, Response<Termekek> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Termekek termek = response.body();
-                    edittextNameModosit.setText(termek.getName());
-                    edittextCountModosit.setText(String.valueOf(termek.getCount()));
-                    edittextOnePriceModosit.setText(String.valueOf(termek.getPrice()));
-                    edittextMertekModosit.setText(termek.getMertekegyseg());
+                    editTextNameEdit.setText(termek.getName());
+                    editTextCountEdit.setText(String.valueOf(termek.getCount()));
+                    editTextPriceEdit.setText(String.valueOf(termek.getPrice()));
+                    editTextMeasureEdit.setText(termek.getMeasure());
                 } else {
                     Toast.makeText(getApplicationContext(), "Nem sikerült lekérni a terméket!", Toast.LENGTH_SHORT).show();
                 }
@@ -145,10 +145,10 @@ public class TermekActivity extends AppCompatActivity {
 
     }
     public void modositTermek(RetrofitApiService apiService, int termekId, Intent intent1){
-        String name = edittextNameModosit.getText().toString().trim();
-        String onePrice = edittextOnePriceModosit.getText().toString().trim();
-        String count = edittextCountModosit.getText().toString().trim();
-        String mertek = edittextMertekModosit.getText().toString().trim();
+        String name = editTextNameEdit.getText().toString().trim();
+        String price = editTextPriceEdit.getText().toString().trim();
+        String count = editTextCountEdit.getText().toString().trim();
+        String measure = editTextMeasureEdit.getText().toString().trim();
 
         if (name.isEmpty()) {
             Toast.makeText(this, "A név mező nem lehet üres!", Toast.LENGTH_SHORT).show();
@@ -156,12 +156,12 @@ public class TermekActivity extends AppCompatActivity {
         }
 
 
-        if (onePrice.isEmpty()) {
+        if (price.isEmpty()) {
             Toast.makeText(this, "Az egységár mező nem lehet üres!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!onePrice.matches("\\d+")) {
+        if (!price.matches("\\d+")) {
             Toast.makeText(this, "Az egységárnak pozitív egész számnak kell lennie!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -176,17 +176,20 @@ public class TermekActivity extends AppCompatActivity {
             return;
         }
 
-        if (mertek.isEmpty()) {
+        if (measure.isEmpty()) {
             Toast.makeText(this, "A mértékegység mező nem lehet üres!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+
         Termekek updatedTermek = new Termekek(
                 name,
-                Integer.parseInt(onePrice),
+                Integer.parseInt(price),
                 Float.parseFloat(count),
-                mertek
+                measure
         );
+
+
         apiService.updateTermekek(termekId, updatedTermek).enqueue(new Callback<Termekek>() {
             @Override
             public void onResponse(Call<Termekek> call,Response<Termekek> response) {

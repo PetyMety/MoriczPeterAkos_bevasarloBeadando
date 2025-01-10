@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TermekActivity">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextNameEdit"
+        android:hint="Név"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextPriceEdit"
+        android:inputType="number"
+        android:layout_below="@+id/edittextNameEdit"
+        android:hint="Egységár"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextCountEdit"
+        android:inputType="number"
+        android:layout_below="@id/edittextPriceEdit"
+        android:hint="Mennyiség"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextMeasureEdit"
+        android:layout_below="@+id/edittextCountEdit"
+        android:hint="Mértékegység"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_below="@+id/edittextMeasureEdit"
+        android:layout_height="wrap_content"
+        android:id="@+id/editButton"
+        android:text="Modosítás"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_below="@+id/editButton"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteButton"
+        android:text="Törlés"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_below="@+id/deleteButton"
+        android:layout_height="wrap_content"
+        android:id="@+id/backButton"
+        android:text="Vissza"/>
+
+</RelativeLayout>

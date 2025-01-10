@@ -9,13 +9,13 @@ public class Termekek {
     private String Measure;
     private float BruttoPrice;
 
-    public Termekek(int id, String name, int price, float count, String measure, float bruttoPrice) {
+    public Termekek( String name, int price, float count, String measure ) {
         this.id = id;
         Name = name;
         Price = price;
         Count = count;
         Measure = measure;
-        BruttoPrice = bruttoPrice;
+        BruttoPrice = Math.round((price*count)*100)/100;
     }
 
     public int getId() {
